@@ -1,0 +1,90 @@
+{
+    // -----------------------------------------------------------------
+    // 일반 속성
+
+    // 이름
+    "name": "devcontainer-example",
+    // 도커컴포즈 위치 지정
+    "dockerComposeFile": "../../docker-compose_devcontainer.yml",
+    // 도커컴포즈를 사용할 때만 필요. 도커컴포즈 안에 서비스 이름이랑 같게 만들면 되는듯
+    "service": "market_be",
+    // 도커컴포즈를 사용할 때만 필요. 컨테이너에 연결하는 기본 경로 설정
+    "workspaceFolder": "/workspace",
+
+    // 기본 컨테이너 내부에서 로컬 시스템(웹 포함)으로 전달되어야 하는 포트 번호
+    "forwardPorts": [],
+
+    // 사용자
+    "remoteUser": "root",
+
+    // "portsAttributes": {"3000": {"label": "Application port"}},
+
+    // "otherPortsAttributes": {"onAutoForward": "silent"},
+
+    // "remoteEnv" : {},
+
+    // "containerEnv": { "MY_VARIABLE": "${localEnv:MY_VARIABLE}" },
+
+    // "containerUser" : "",
+
+    // "updateRemoteUserUID" : "",
+
+    // "userEnvProbe" : "",
+
+    // "overrideCommand" : "",
+
+    // -----------------------------------------------------------------
+
+    // 기본 컨테이너에 추가할 개발 컨테이너 기능
+    // "features": {
+    //     "docker-in-docker": {
+    //     "version": "latest",
+    //     "dockerDashComposeVersion": "v2"
+    //     }
+    // },
+
+    "settings": { 
+        "editor.mouseWheelZoom": true,
+        "editor.renderWhitespace": "all",
+        "workbench.editor.enablePreview": false,
+        "terminal.integrated.scrollback": 10000,
+        "extensions.ignoreRecommendations": true,
+        "java.home": "/docker-java-home",
+        "java.jdt.ls.vmargs": "-javaagent:/usr/local/bin/lombok.jar",
+        "java.configuration.runtimes": [
+            {
+                "name": "JavaSE-1.8",
+                "path": "/usr/local/sdkman/candidates/java/current",
+                "default" : true
+            }
+        ],
+        "java.import.gradle.enabled": false
+    },
+
+    // 확장이 생성될 때 컨테이너 내부에 설치되어야 하는 확장을 지정하는 확장 ID의 배열
+    "extensions": [
+        "vscjava.vscode-java-pack",
+        "adashen.vscode-tomcat",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "alefragnani.bookmarks",
+        "oderwat.indent-rainbow",
+        "2gua.rainbow-brackets",
+        "redhat.vscode-yaml",
+        "arjun.swagger-viewer",
+        "42crunch.vscode-openapi",
+        "rangav.vscode-thunder-client",
+        "pivotal.vscode-boot-dev-pack",
+        "gabrielbb.vscode-lombok",
+        "vscjava.vscode-gradle"
+    ]
+
+    // // 지원 도구 에 정의된 제품별 속성
+    // "customizations": {
+    //     "vscode": {
+    //         // settings.json컨테이너/머신별 설정 파일에 기본값을 추가
+            
+    // }
+
+}

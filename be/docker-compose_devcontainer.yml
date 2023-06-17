@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  market_be:
+    container_name: market_be
+    build:
+      context: ./devcontainer/.devcontainer
+      args:
+        VARIANT: "8"
+        INSTALL_MAVEN: "true"
+        INSTALL_GRADLE: "true"
+        GRADLE_VERSION: "2.13"
+    volumes:
+      - ./marketBe:/workspace/:cached
+      - ./devcontainer/.vscode:/workspace/.vscode:cached
+    ports:
+      - "8080:8080"
+    command: sleep infinity
+    networks:
+      - market_networks
+
+volumes:
+  dbdata:
+
+networks:
+  market_networks:
