@@ -1,0 +1,22 @@
+{
+  "name": "remote container sample",
+  "dockerComposeFile": ["../../docker-compose.yml"],
+  "service": "market_fe",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll.eslint": true
+    },
+    "[json]": {
+      "editor.formatOnSave": false
+    }
+  },
+  "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "znck.vue"],
+  // "postCreateCommand": "npm install"
+}
