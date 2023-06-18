@@ -2,14 +2,15 @@ version: "3"
 
 services:
   market_fe:
-    image: mcr.microsoft.com/vscode/devcontainers/javascript-node:0-14
+    build:
+      context: ./devcontainer
     working_dir: /workspace
     volumes:
       - ../marketFe/market-fe:/workspace:cached
       - ./.vscode:/workspace/.vscode:cached
     tty: true
     ports:
-      - "8081:8080"
+      - "8000:8000"
     networks:
       - market_networks
 
