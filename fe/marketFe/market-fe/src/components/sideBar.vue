@@ -1,47 +1,41 @@
 <template>
-  <v-card>
-    <v-layout>
-      <v-navigation-drawer
-        v-model="drawer"
-        :rail="rail"
-        permanent
-        @click="rail = false"
-      >
-        <v-list-item
-          prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-          title="John Leider"
-          nav
-        >
-          <template v-slot:append>
-            <v-btn
-              variant="text"
-              icon="mdi-chevron-left"
-              @click.stop="rail = !rail"
-            ></v-btn>
-          </template>
-        </v-list-item>
+       <v-list-item
+        title="John Leider"
+      ></v-list-item>
 
-        <v-divider></v-divider>
+      <v-divider></v-divider>
 
-        <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" @click.stop="rail = !rail"></v-list-item>
-          <v-list-item prepend-icon="mdi-account" title="My Account" value="account" @click.stop="rail = !rail"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users" @click.stop="rail = !rail"></v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-      <v-main></v-main>
-      <!-- style="height: 250px" -->
-    </v-layout>
-  </v-card>
+      <v-list density="compact" nav>
+          <v-list-item title="signin" value="signin" @click="signin()"></v-list-item>
+          <v-list-item title="login" value="login" @click="login()"></v-list-item>
+      </v-list>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        drawer: true,
-        rail: true,
-      }
+    // computed:{
+    //   showSideBar(){
+    //     return this.$store.state.bar.showSideBar
+    //   },
+    // },
+
+    // watch: {
+    //   showSideBar(oldValue, newValue){
+
+    //   }
+    // },
+
+    methods:{
+      // setShowSideBar(){
+      //   this.$store.commit('bar/setShowSideBar', !this.showSideBar)
+      // },
+      signin(){
+        console.log(123)
+        this.$router.push("/signin");
+      },
+      login(){
+        console.log(456)
+      },
     },
   }
 </script>

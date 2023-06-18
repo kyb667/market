@@ -1,23 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HelloWorld1 from '../components/HelloWorld1.vue';
-import HelloWorld2 from '../components/HelloWorld2.vue';
+import headerBar from '../components/headerBar.vue';
+import mainFrame from '../components/mainFrame.vue';
 import sideBar from '../components/sideBar.vue';
+import userSignIn from '../components/user/userSignIn.vue';
 
 const routes = [
   {
     path: '/',
     components: {
-        default: HelloWorld1,
+        mainFrame: mainFrame,
         sideBar: sideBar,
-        b: HelloWorld2
+        headerBar: headerBar
     }
   },
   {
-    path: '/a',
+    path: '/signIn',
     components: {
-        default: HelloWorld2,
-        sideBar: sideBar,
-        b: HelloWorld1
+      mainFrame: userSignIn,
+      sideBar: sideBar,
+      headerBar: headerBar
     }
   },
 ]
