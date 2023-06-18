@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  market_be:
+    container_name: market_be
+    build:
+      context: ./be/marketBe
+      args:
+        VARIANT: "8"
+        INSTALL_MAVEN: "true"
+        INSTALL_GRADLE: "true"
+        GRADLE_VERSION: "2.13"
+    ports:
+      - "8080:8080"
+    command: sleep infinity
+    networks:
+      - market_networks
+
+  market_db:
+    container_name: market_db
+    build:
+      context: ./db
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - market_networks
+
+volumes:
+  dbdata:
+
+networks:
+  market_networks:
