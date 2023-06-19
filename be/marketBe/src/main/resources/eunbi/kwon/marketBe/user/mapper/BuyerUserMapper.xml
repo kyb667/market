@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eunbi.kwon.marketBe.user.mapper.BuyerUserMapper">
+
+    <insert id="InsertBuyerInfo" parameterType="hashMap">
+      insert into buyer_info(
+        buyer_email, 
+        buyer_id, 
+        buyer_password, 
+        buyer_login_type, 
+        buyer_name, 
+        phone, 
+        created_by, 
+        created_at,
+        updated_by, 
+        updated_at
+      )
+      values
+        (
+          #{userEmail}, 
+          #{userId}, 
+          #{userPw}, 
+          #{loginType}, 
+          #{userName}, 
+          #{userPhone}, 
+          'admin',
+          now(),
+          'admin',
+          now()
+        )
+    </insert>
+
+    <select id="Login" parameterType="hashMap" resultType="int">
+      select count(*)
+      from buyer_info
+      where buyer_id = #{userId}
+      and buyer_password = #{userPw}
+    </select>
+
+
+</mapper>

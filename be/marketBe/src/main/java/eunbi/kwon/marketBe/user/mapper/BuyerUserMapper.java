@@ -5,9 +5,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface AdminUserMapper {
+public interface BuyerUserMapper {
     
-    void InsertAdminInfo(final Map<String, Object> userInfo);
+    void InsertBuyerInfo(final Map<String, Object> userInfo);
 
     Integer Login(final Map<String, Object> userInfo);
 }
