@@ -13,6 +13,8 @@ services:
     ports:
       - "8080:8080"
     command: sleep infinity
+    depends_on:
+      - market_db
     networks:
       - market_networks
 
