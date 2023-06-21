@@ -1,33 +1,28 @@
-
 const state = () => ({
-  showSideBar : false
-})
+  showSideBar: false,
+});
 
 // getters
 const getters = {
   getShowSideBar: (state) => {
     return state.showSideBar;
-  }
-}
+  },
+};
 
 // actions
-const actions = {
-}
+const actions = {};
 
 // mutations
 const mutations = {
   setShowSideBar(state, value) {
-    console.log("setShowSideBar start")
-    console.log(value);
-    state.showSideBar = value
-    console.log("setShowSideBar end")
-  }
-}
+    state.showSideBar = value;
+  },
+};
 
 export default {
   namespaced: true,
   state,
   getters,
   actions,
-  mutations
-}
+  mutations,
+};

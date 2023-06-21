@@ -1,41 +1,46 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import headerBar from '../components/headerBar.vue';
-import mainFrame from '../components/mainFrame.vue';
-import sideBar from '../components/sideBar.vue';
-import userSignIn from '../components/user/userSignIn.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import headerBar from "../components/headerBar.vue";
+import mainFrame from "../components/mainFrame.vue";
+import sideBar from "../components/sideBar.vue";
+import userLogIn from "../components/user/userLogin.vue";
+import userSignIn from "../components/user/userSignIn.vue";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     components: {
-        mainFrame: mainFrame,
-        sideBar: sideBar,
-        headerBar: headerBar
-    }
+      mainFrame: mainFrame,
+      sideBar: sideBar,
+      headerBar: headerBar,
+    },
   },
   {
-    path: '/signIn',
+    path: "/signIn",
     components: {
       mainFrame: userSignIn,
       sideBar: sideBar,
-      headerBar: headerBar
-    }
+      headerBar: headerBar,
+    },
   },
-]
+  {
+    path: "/logIn",
+    components: {
+      mainFrame: userLogIn,
+      sideBar: sideBar,
+      headerBar: headerBar,
+    },
+  },
+];
 
 const router = createRouter({
   // mode: 'history',
   // process.env.BASE_URL
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
-  console.log("--------start")
-  console.log(to)
-  console.log(from)
-  console.log("--------end")
-  next()
-})
+  next();
+});
 
-export default router
+export default router;
