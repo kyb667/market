@@ -8,4 +8,15 @@ export default {
     IdType: "1",
     EmailType: "2",
   },
+  Url: {
+    buyer: {
+      default: "v1/user/buyer",
+      signIn: "/signIn",
+      logIn: "/logIn",
+    },
+  },
+  RES_STATE: {
+    OK: 0,
+    NG: 1,
+  },
 };

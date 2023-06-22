@@ -1,16 +1,14 @@
 <template>
-  <shopMain/>
+  <shopMain />
 </template>
 
 <script>
-
-import shopMain from './shop/shopMain.vue';
+import shopMain from "./shop/shopMain.vue";
 
 export default {
-  name: 'mainFrame',
-  components:{
+  name: "mainFrame",
+  components: {
     shopMain
-  }
-}
+  },
+};
 </script>
-

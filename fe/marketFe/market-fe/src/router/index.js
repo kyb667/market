@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import headerBar from "../components/headerBar.vue";
 import mainFrame from "../components/mainFrame.vue";
+import showAlert from "../components/showAlert.vue";
 import sideBar from "../components/sideBar.vue";
 import userLogIn from "../components/user/userLogin.vue";
 import userSignIn from "../components/user/userSignIn.vue";
@@ -12,6 +13,7 @@ const routes = [
       mainFrame: mainFrame,
       sideBar: sideBar,
       headerBar: headerBar,
+      showAlert: showAlert,
     },
   },
   {
@@ -20,6 +22,7 @@ const routes = [
       mainFrame: userSignIn,
       sideBar: sideBar,
       headerBar: headerBar,
+      showAlert: showAlert,
     },
   },
   {
@@ -28,6 +31,7 @@ const routes = [
       mainFrame: userLogIn,
       sideBar: sideBar,
       headerBar: headerBar,
+      showAlert: showAlert,
     },
   },
 ];

@@ -1,6 +1,6 @@
 <template>
   <v-list-item
-    v-bind:title="loginFlag === false ? 'test' : userInfoForm.userId"
+    v-bind:title="loginFlag === false ? 'test' : userInfoForm.userName"
   ></v-list-item>
 
   <v-divider></v-divider>

@@ -19,6 +19,7 @@
 
       <v-main>
         <router-view name="mainFrame"></router-view>
+        <router-view name="showAlert"></router-view>
       </v-main>
     </v-layout>
   </v-card>
