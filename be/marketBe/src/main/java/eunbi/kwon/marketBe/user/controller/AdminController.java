@@ -1,14 +1,12 @@
 package eunbi.kwon.marketBe.user.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import eunbi.kwon.marketBe.model.AdminInfo;
 import eunbi.kwon.marketBe.user.service.AdminUserService;
 import lombok.RequiredArgsConstructor;
+
+import eunbi.kwon.marketBe.common.Config;
 
 @RequiredArgsConstructor
 @RestController
@@ -54,7 +53,7 @@ public class AdminController {
 
 		Map<String, Object> map = new HashMap<>();
 
-		map.put("result", 1);
+		map.put("result", Config.STATE_NG);
 
 		try {
 			Map<String, Object> reqMap = new HashMap<>();
@@ -65,7 +64,7 @@ public class AdminController {
 
 			adminUserService.signIn(logger, reqMap);
 
-			map.put("result", 0);
+			map.put("result", Config.STATE_OK);
 
 		} catch (Exception e) {
 			logger.warning(e.toString());
@@ -96,7 +95,7 @@ public class AdminController {
 
 		logger.log(Level.INFO, LogName + " start");
 
-		returnMap.put("result", 1);
+		returnMap.put("result", Config.STATE_NG);
 
 		try {
 			Map<String, Object> reqMap = new HashMap<>();

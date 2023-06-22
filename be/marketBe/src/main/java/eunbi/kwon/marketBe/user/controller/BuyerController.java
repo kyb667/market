@@ -7,11 +7,8 @@ import java.util.logging.Logger;
 
 import lombok.Data;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import eunbi.kwon.marketBe.user.service.BuyerUserService;
 import lombok.RequiredArgsConstructor;
+
+import eunbi.kwon.marketBe.common.Config;
 
 @RequiredArgsConstructor
 @RestController
@@ -66,7 +65,7 @@ public class BuyerController {
 
 		Map<String, Object> map = new HashMap<>();
 		
-		map.put("result", 1);
+		map.put("result", Config.STATE_NG);
 		try {
 
 			Map<String, Object> reqMap = new HashMap<>();
@@ -80,7 +79,7 @@ public class BuyerController {
 
 			buyerUserService.signIn(logger, reqMap);
 
-			map.put("result", 0);
+			map.put("result", Config.STATE_OK);
 
 		} catch (Exception e) {
 			logger.warning(e.toString());
@@ -113,26 +112,32 @@ public class BuyerController {
 
 		Map<String, Object> returnMap = new HashMap<>();
 
-		returnMap.put("result", 1);
+		returnMap.put("result", Config.STATE_NG);
 
 		try {
 			
 			// ID login
-			if (loginReqData.loginType.equals("1")){
+			if (loginReqData.loginType.equals(Config.USER_LOGIN_TYPE_ID)){
 
 				Map<String, Object> map = new HashMap<>();
 
 				map.put("userId", loginReqData.userId);
 				map.put("userPw", loginReqData.userPw);
 
-				Integer result = buyerUserService.LogIn(logger, map);
+				String userName = buyerUserService.LogIn(logger, map);
 
-				returnMap.put("result", result);
+				Map<String, Object> data = new HashMap<>();
+
+				data.put("userName", userName);
+
+				returnMap.put("data", data);
+
+				returnMap.put("result", Config.STATE_OK);
 				
 			// email login
-			}else if (loginReqData.loginType.equals("2")){
+			}else if (loginReqData.loginType.equals(Config.USER_LOGIN_TYPE_EMAIL)){
 				// TODO
-				returnMap.put("result", 0);
+				returnMap.put("result", Config.STATE_OK);
 			}
 		} catch (Exception e) {
 			logger.warning(e.toString());

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.springframework.stereotype.Service;
 
+import eunbi.kwon.marketBe.common.Config;
 import eunbi.kwon.marketBe.user.mapper.AdminUserMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -44,6 +45,6 @@ public class AdminUserService {
 
         logger.log(Level.INFO, LogName + " end");
 
-        return 0;
+        return Config.STATE_OK;
     }
 }

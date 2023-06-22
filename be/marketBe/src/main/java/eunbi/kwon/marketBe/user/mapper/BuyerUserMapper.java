@@ -9,5 +9,5 @@ public interface BuyerUserMapper {
     
     void InsertBuyerInfo(final Map<String, Object> userInfo);
 
-    Integer Login(final Map<String, Object> userInfo);
+    String Login(final Map<String, Object> userInfo);
 }

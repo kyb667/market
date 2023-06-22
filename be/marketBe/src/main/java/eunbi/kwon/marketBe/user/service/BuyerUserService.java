@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import eunbi.kwon.marketBe.user.mapper.BuyerUserMapper;
 import lombok.RequiredArgsConstructor;
 
+import eunbi.kwon.marketBe.common.Config;
+
 @RequiredArgsConstructor
 @Service
 public class BuyerUserService {
@@ -28,9 +30,9 @@ public class BuyerUserService {
         }
 
         if (userInfo.get("userId").equals("")){
-            userInfo.put("loginType", "2");
+            userInfo.put("loginType", Config.USER_LOGIN_TYPE_EMAIL);
         }else{
-            userInfo.put("loginType", "1");
+            userInfo.put("loginType", Config.USER_LOGIN_TYPE_ID);
         }
 
         logger.log(Level.INFO, "signin user info : " + userInfo.toString());
@@ -40,7 +42,7 @@ public class BuyerUserService {
         logger.log(Level.INFO, LogName + " end");
     }
 
-    public Integer LogIn(Logger logger, Map<String, Object> userInfo) throws Exception {
+    public String LogIn(Logger logger, Map<String, Object> userInfo) throws Exception {
 
         final String LogName = "buyer-LogIn-Service";
 
@@ -48,7 +50,9 @@ public class BuyerUserService {
 
         logger.log(Level.FINER, "userInfo : " + userInfo.toString());
 
-        if (buyerUserMapper.Login(userInfo).equals(0)){
+        String userName = buyerUserMapper.Login(userInfo);
+
+        if (userName == null){
             throw new Exception("invalid");
         }else{
             logger.log(Level.INFO, "Login success");
@@ -56,6 +60,6 @@ public class BuyerUserService {
 
         logger.log(Level.INFO, LogName + " end");
 
-        return 0;
+        return userName;
     }
 }
