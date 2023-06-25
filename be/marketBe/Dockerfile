@@ -25,4 +25,4 @@ RUN ln -s /etc/tomcat9 /usr/share/tomcat9/conf
 
 RUN curl -o /usr/local/bin/lombok.jar https://projectlombok.org/downloads/lombok.jar
 
-ENTRYPOINT ["java", "-jar", "./build/libs/marketBe-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "./build/libs/marketBe-0.0.1-SNAPSHOT.jar"]

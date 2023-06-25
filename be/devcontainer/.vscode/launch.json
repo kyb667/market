@@ -8,7 +8,8 @@
             "type": "java",
             "name": "MarketBeApplication",
             "request": "launch",
-            "mainClass": "eunbi.kwon.marketBe.MarketBeApplication"
+            "mainClass": "eunbi.kwon.marketBe.MarketBeApplication",
+            "vmArgs": "-Dspring.profiles.active=develop"
         },
         {
             "type": "java",
