@@ -3,6 +3,8 @@ import config from "../../plugin/config";
 
 import user from "./user";
 
+import map from "./map";
+
 const state = () => ({
   selectFilter: [],
 });
@@ -19,7 +21,11 @@ const actions = {
   // eslint-disable-next-line no-unused-vars
   async localSearch({ state, commit, rootState }) {
     if (state.selectFilter.length !== 0) {
-      let body = { filterData: state.selectFilter };
+      var a = {
+        selectFilter: state.selectFilter,
+        center: state.map.center,
+      };
+      let body = { filterData: a };
       console.log("localSearch start");
       console.log(body);
       await axios
@@ -45,15 +51,15 @@ const actions = {
               res.data.locations,
               { root: true }
             );
-            commit(
-              "map/setCenter",
-              // {
-              //   lat: 35.6750441,
-              //   lng: 139.4906772,
-              // },
-              res.data.center,
-              { root: true }
-            );
+            // commit(
+            //   "map/setCenter",
+            //   // {
+            //   //   lat: 35.6750441,
+            //   //   lng: 139.4906772,
+            //   // },
+            //   res.data.center,
+            //   { root: true }
+            // );
             commit("user/setAlertTitle", "search", { root: true });
             commit("user/setAlertMsg", "success", { root: true });
             commit("user/setAlertFlag", true, { root: true });
@@ -94,5 +100,6 @@ export default {
   mutations,
   modules: {
     user,
+    map,
   },
 };

@@ -1,16 +1,23 @@
 <template>
   <GoogleMap
+    id="map"
     :api-key="GOOGLE_API_KEY"
     style="width: 100%; height: 500px"
     :center="center"
     :zoom="3"
     language="kor"
+    @click="toggleOverlay"
   >
+    <Marker
+      :options="{ position: center, label: 'L', title: 'LADY LIBERTY' }"
+    />
+
     <MarkerCluster>
       <Marker
         v-for="(location, i) in locations"
         :options="{ position: location }"
         :key="i"
+        @click="center = location"
       >
         <InfoWindow>
           <div id="contet">
@@ -53,7 +60,6 @@ import { GoogleMap, Marker, MarkerCluster, InfoWindow } from "vue3-google-map";
 export default defineComponent({
   components: { GoogleMap, Marker, MarkerCluster, InfoWindow },
   setup() {
-
     const store = useStore();
 
     const center = computed(() => store.getters["map/getCenter"]);
@@ -63,6 +69,13 @@ export default defineComponent({
     const GOOGLE_API_KEY = process.env.VUE_APP_GOOGLE_API_KEY;
 
     return { center, locations, GOOGLE_API_KEY };
+  },
+  methods: {
+    toggleOverlay(event) {
+      var latLng = event.latLng.toJSON();
+      console.log(latLng);
+      this.$store.commit("map/setCenter", latLng);
+    },
   },
 });
 </script>
