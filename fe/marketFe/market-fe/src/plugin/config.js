@@ -14,9 +14,18 @@ export default {
       signIn: "/signIn",
       logIn: "/logIn",
     },
+    map: {
+      default: "v1/map/yahoo",
+      localSearch: "/localSearch",
+    },
   },
   RES_STATE: {
     OK: 0,
     NG: 1,
+  },
+  SELECT_SEARCH: {
+    creditcard: "creditcard",
+    parking: "parking",
+    smoking: "smoking",
   },
 };
