@@ -26,6 +26,19 @@ export default {
   SELECT_SEARCH: {
     creditcard: "creditcard",
     parking: "parking",
-    smoking: "smoking",
+    smoking: {
+      label: "smoking",
+      value: ["禁煙", "分煙", "喫煙可"],
+    },
+    coupon: "coupon",
+    reservation: "reservation",
+    open: "open",
+    price: {
+      label: "price",
+      value: {
+        min_price: "min_price",
+        max_price: "max_price",
+      },
+    },
   },
 };

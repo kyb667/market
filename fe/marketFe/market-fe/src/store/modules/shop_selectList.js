@@ -88,6 +88,7 @@ const actions = {
 // mutations
 const mutations = {
   setSelectFilter(state, value) {
+    state.selectFilter.splice(0, state.selectFilter.length);
     state.selectFilter.push(...value);
   },
 };
