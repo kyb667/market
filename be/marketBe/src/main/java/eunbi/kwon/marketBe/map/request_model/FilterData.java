@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class FilterData {
-    List<String> selectFilter;
-    Map<String, Double> center;
+    List<SelectFilter> selectFilter;
+    Center center;
 }

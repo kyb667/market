@@ -265,10 +265,10 @@ public class MapService {
         // callback	string	JSONPとして出力する際のコールバック関数名を入力するためのパラメータ。UTF-8でエンコードした文字列を入力します。
 
         // lat	float	中心の緯度。
-        url += "&lat=" + filterData.getFilterData().getCenter().get("lat").toString();
+        url += "&lat=" + filterData.getFilterData().getCenter().getLat().toString();
 
         // lon	float	中心の経度。
-        url += "&lon=" + filterData.getFilterData().getCenter().get("lng").toString();
+        url += "&lon=" + filterData.getFilterData().getCenter().getLng().toString();
 
         // dist	float	検索距離（km）です。
         //      最大20km、小数点も指定できます。
@@ -288,17 +288,17 @@ public class MapService {
         // coupon	boolean	trueを指定すると、クーポンが利用できる店舗データを対象に検索します。falseは無効です。
         //      ※モバイル向けサイトでは掲載不可なクーポンがあります。APIの結果をモバイル端末に掲載する場合は、リクエストパラメータ「device」をセットし「mobile」を指定してください。モバイル端末で掲載不可なクーポンが非表示になります。
         //      ※クーポンの利用についてはクーポン提供元サイトの利用条件（画面を印刷して提示など）に準じます。
-        if (filterData.getFilterData().getSelectFilter().contains("coupon")){
-            url += "&coupon=true";
+        if (filterData.getFilterData().getSelectFilter().get(0).getCoupon() != null){
+            url += "&coupon="+filterData.getFilterData().getSelectFilter().get(0).getCoupon();
         }
         
         // parking	boolean	trueを指定すると、駐車場がある店舗データを対象に検索します。falseは無効です
-        if (filterData.getFilterData().getSelectFilter().contains("parking")){
-            url += "&parking=true";
+        if (filterData.getFilterData().getSelectFilter().get(0).getParking() != null){
+            url += "&parking="+filterData.getFilterData().getSelectFilter().get(0).getParking();
         }
         
         // creditcard	boolean	trueを指定すると、クレジットカードが利用できる店舗データを対象に検索します。falseは無効です。
-        if (filterData.getFilterData().getSelectFilter().contains("creditcard")){
+        if (filterData.getFilterData().getSelectFilter().get(0).getCreditcard() != null){
             url += "&creditcard=true";
         }
 
@@ -307,12 +307,28 @@ public class MapService {
         //      1 - 禁煙
         //      2 - 分煙
         //      3 - 喫煙可
-        if (filterData.getFilterData().getSelectFilter().contains("smoking")){
-            url += "&smoking=1,2,3";
+        if (filterData.getFilterData().getSelectFilter().get(0).getSmoking() != null){
+
+            if (filterData.getFilterData().getSelectFilter().get(0).getSmoking().size() > 0){
+                List<String> smoking = new ArrayList<String>();
+                // 1 - 禁煙
+                if (filterData.getFilterData().getSelectFilter().get(0).getSmoking().contains(Config.SELECTFILTER_SMOKING_KINEN_STR) == true){
+                    smoking.add(Config.SELECTFILTER_SMOKING_KINEN_NUM);
+                }
+                // 2 - 分煙
+                if (filterData.getFilterData().getSelectFilter().get(0).getSmoking().contains(Config.SELECTFILTER_SMOKING_BUNEN_STR) == true){
+                    smoking.add(Config.SELECTFILTER_SMOKING_BUNEN_NUM);
+                }
+                // 3 - 喫煙可
+                if (filterData.getFilterData().getSelectFilter().get(0).getSmoking().contains(Config.SELECTFILTER_SMOKING_KITHUEN_STR) == true){
+                    smoking.add(Config.SELECTFILTER_SMOKING_KITHUEN_NUM);
+                }
+                url += "&smoking=" + String.join(",", smoking);
+            }
         }
 
         // reservation	string	1を指定すると、予約ができる店舗データを対象に検索します。
-        if (filterData.getFilterData().getSelectFilter().contains("reservation")){
+        if (filterData.getFilterData().getSelectFilter().get(0).getReservation() != null){
             url += "&reservation=1";
         }
 
@@ -325,7 +341,9 @@ public class MapService {
         //      曜日と時間による検索 - week,hourで指定します。ex）月曜日の12時:Mon,12
         //      ・曜日はMon,Tue,Wed,Thu,Fri,Sat,Sunのいずれかで指定します。
         //      現在時刻で開店している施設を検索 - nowで指定します。ex）現在時刻:now
-        url += "&open=now";
+        if (filterData.getFilterData().getSelectFilter().get(0).getOpen() != null){
+            url += "&open=now";
+        }
 
         // loco_mode	boolean	Yahoo!ロコと同等の検索機能を有効にします。
         //      ・3文字以下のひらがなまたはカタカナでのクエリのロジックが変更になります。より絞り込まれた結果が返ってくるようになります。
@@ -338,8 +356,20 @@ public class MapService {
         //      デフォルト値はtrueで、falseを指定すると無効です。
 
         // maxprice	int	Priceタグの最大値を指定します。
-
         // minprice	int	Priceタグの最小値を指定します。
+        if (filterData.getFilterData().getSelectFilter().get(0).getPrice() != null){
+
+            // maxprice
+            if (filterData.getFilterData().getSelectFilter().get(0).getPrice().containsKey("max_price") == true){
+                url += "&maxprice=" + filterData.getFilterData().getSelectFilter().get(0).getPrice().get("max_price");
+            }
+            
+            // minprice
+            if (filterData.getFilterData().getSelectFilter().get(0).getPrice().containsKey("min_price") == true){
+                url += "&minprice=" + filterData.getFilterData().getSelectFilter().get(0).getPrice().get("min_price");
+            }
+
+        }
 
         logger.log(Level.INFO, LogFuncName+ " | " + "url : " + url);
 
